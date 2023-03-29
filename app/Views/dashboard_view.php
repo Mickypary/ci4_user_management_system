@@ -22,6 +22,7 @@
 				<h4>Username <?= ucfirst($userdata->username); ?></h4>
 				<h4>Mobile: <?= $userdata->mobile; ?></h4>
 				<h4>Email: <?= $userdata->email; ?></h4>
+				<h4>Gender: <?= $userdata->gender; ?></h4>
 			</div>
 		</div>
 		
