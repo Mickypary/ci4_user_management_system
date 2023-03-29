@@ -2,7 +2,7 @@
 
 
 <?= $this->section('page_title'); ?>
-	<span>Welcome <?= ucfirst($userdata->username); ?></span>
+	<span>Welcome: <?= ucfirst($userdata->username); ?></span>
 <?= $this->endSection(); ?>
 
 
