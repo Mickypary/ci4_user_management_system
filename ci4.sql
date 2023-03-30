@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 30, 2023 at 09:54 AM
+-- Generation Time: Mar 30, 2023 at 04:43 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -44,6 +44,31 @@ INSERT INTO `contact` (`id`, `name`, `email`, `mobile`, `message`) VALUES
 (1, 'Adewoye', 'uche.chukwu@grenvilleschool.com', 1234567890, 'sdf'),
 (2, 'Micky', 'eathorne@yahoo.com', 1234567890, 'fghh'),
 (3, 'Babajide Sanwolu', 'eathorne@yahoo.com', 1234567890, 'fgh');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `login_activity`
+--
+
+CREATE TABLE IF NOT EXISTS `login_activity` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uniid` varchar(32) NOT NULL,
+  `agent` varchar(100) NOT NULL,
+  `ip` varchar(30) NOT NULL,
+  `login_time` datetime NOT NULL,
+  `logout_time` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `login_activity`
+--
+
+INSERT INTO `login_activity` (`id`, `uniid`, `agent`, `ip`, `login_time`, `logout_time`) VALUES
+(1, '5c860770fdbefc5768f6e081f01cfb1f', 'Firefox', '127.0.0.1', '2023-03-30 15:30:55', '2023-03-30 03:31:16'),
+(2, '5c860770fdbefc5768f6e081f01cfb1f', 'Firefox', '127.0.0.1', '2023-03-30 15:31:23', '2023-03-30 03:42:48'),
+(3, '5c860770fdbefc5768f6e081f01cfb1f', 'Firefox', '127.0.0.1', '2023-03-30 15:42:58', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
