@@ -55,6 +55,19 @@ class Login extends Controller
 
 							if ($userdata->status == 'active') {
 								// code...
+								$loginInfo = [
+									'uniid' => $userdata->uniid,
+									'agent' => $this->getUserAgentInfo(),
+									'ip' => $this->request->getIPAddress(),
+									'login_time' => date('Y-m-d H:i:s'),
+								];
+
+								// save login activities to database and return the last inserted ID
+								$login_activity_id = $this->loginModel->saveLoginInfo($loginInfo);
+								if ($login_activity_id) {				
+									$this->session->set('la_id', $login_activity_id);	
+								}
+
 								$sessUserdata = [
 									'loggedin' => true,
 									'loggedin_uniid' => $userdata->uniid,
@@ -84,4 +97,28 @@ class Login extends Controller
 		
 		return view("login_view", $data);
 	}
-}
+
+
+	public function getUserAgentInfo()
+	{
+		$agent = $this->request->getUserAgent();
+
+		if ($agent->isBrowser()) {		
+			$currentAgent = $agent->getBrowser();
+		}elseif ($agent->isRobot()) {
+			$currentAgent = $agent->getRobot();
+		}elseif ($agent->isMobile()) {
+			$currentAgent = $agent->getMobile();
+		}else {
+			$currentAgent = "Unidentified User Agent";
+		}
+
+		return $currentAgent;
+	}
+
+
+
+
+
+
+} /*End Class*/

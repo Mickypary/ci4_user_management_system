@@ -57,6 +57,7 @@
                             </li>
                         <?php endif; ?>
 
+                        <!-- Is Logged In Menus -->
                         <?php if(is_loggedin()): ?>
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="<?= base_url() ?>dashboard" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -68,7 +69,9 @@
                                 <a class="dropdown-item" href="#">Upload Avatar</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">Change Password</a>
-                            <div class="dropdown-divider"></div>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="<?= base_url() ?>dashboard/login_activity">Login Activity</a>
+                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="<?= base_url() ?>dashboard/logout">Logout</a>
                             </div>
                         </li>

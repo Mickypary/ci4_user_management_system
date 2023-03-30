@@ -39,8 +39,33 @@ class Dashboard extends Controller
 	public function logout()
 	{
 		// code...
-		session()->remove('logged_user');
-		session()->destroy();
-		return redirect()->to('login');
+		if (session()->has('la_id')) {
+			$la_id = session()->get('la_id');
+			$status = $this->dModel->updateLogoutTime($la_id);
+			if ($status) {	
+				session()->remove('logged_user');
+				session()->remove('la_id');
+				session()->destroy();
+			
+				return redirect()->to('login');
+			}
+		}	
 	}
-}
+
+	public function login_activity()
+	{
+		$data['userdata'] = $this->dModel->getLoggedInUserData(session()->get('loggedin_uniid'));
+		$data['login_info'] = $this->dModel->getLoginUserInfo(session()->get('loggedin_uniid'));
+
+		return view('login_activity_view', $data);
+	}
+
+
+
+
+
+
+
+
+
+} /*End Class*/

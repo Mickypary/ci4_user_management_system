@@ -23,7 +23,33 @@
 				<h4>Mobile: <?= $userdata->mobile; ?></h4>
 				<h4>Email: <?= $userdata->email; ?></h4>
 				<h4>Gender: <?= ucfirst($userdata->gender); ?></h4>
+
 			</div>
+
+			<h4>Login Activity</h4>
+			<?php if(count($login_info) > 0): ?>
+
+				<table class="table">
+					<tr>
+						<th>Id</th>
+						<th>Login Time</th>
+						<th>Logout Time</th>
+						<th>User Agent</th>
+						<th>IP Address</th>
+					</tr>
+					<?php foreach($login_info as $key => $info): ?>
+					<tr>
+						<td><?= $key+1 ?></td>
+						<td><?= date('l, M d Y h:i:s a', strtotime($info->login_time)); ?></td>
+						<td><?= $info->logout_time; ?></td>
+						<td><?= $info->agent ?></td>
+						<td><?= $info->ip ?></td>
+					</tr>
+					<?php endforeach; ?>
+				</table>
+			<?php else: ?>
+				<h4>Sorry No Login activity found!</h4>
+			<?php endif; ?>
 		</div>
 		
 	</div>
