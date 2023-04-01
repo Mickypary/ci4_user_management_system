@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 30, 2023 at 04:43 PM
+-- Generation Time: Apr 01, 2023 at 09:00 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `login_activity` (
   `login_time` datetime NOT NULL,
   `logout_time` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `login_activity`
@@ -68,7 +68,37 @@ CREATE TABLE IF NOT EXISTS `login_activity` (
 INSERT INTO `login_activity` (`id`, `uniid`, `agent`, `ip`, `login_time`, `logout_time`) VALUES
 (1, '5c860770fdbefc5768f6e081f01cfb1f', 'Firefox', '127.0.0.1', '2023-03-30 15:30:55', '2023-03-30 03:31:16'),
 (2, '5c860770fdbefc5768f6e081f01cfb1f', 'Firefox', '127.0.0.1', '2023-03-30 15:31:23', '2023-03-30 03:42:48'),
-(3, '5c860770fdbefc5768f6e081f01cfb1f', 'Firefox', '127.0.0.1', '2023-03-30 15:42:58', '0000-00-00 00:00:00');
+(3, '5c860770fdbefc5768f6e081f01cfb1f', 'Firefox', '127.0.0.1', '2023-03-30 15:42:58', '2023-03-30 03:54:56'),
+(4, '90222ded18f04e0c6850bc737f584b4a', 'Firefox', '127.0.0.1', '2023-03-30 15:55:14', '0000-00-00 00:00:00'),
+(5, '5c860770fdbefc5768f6e081f01cfb1f', 'Firefox', '127.0.0.1', '2023-03-31 08:30:53', '0000-00-00 00:00:00'),
+(6, '5c860770fdbefc5768f6e081f01cfb1f', 'Edge', '::1', '2023-04-01 19:52:45', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `social_login`
+--
+
+CREATE TABLE IF NOT EXISTS `social_login` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `oauth_id` varchar(100) NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `first_name` varchar(100) NOT NULL,
+  `last_name` varchar(100) NOT NULL,
+  `profile_pic` varchar(250) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `social_login`
+--
+
+INSERT INTO `social_login` (`id`, `oauth_id`, `email`, `first_name`, `last_name`, `profile_pic`, `created_at`, `updated_at`) VALUES
+(1, '102205448859811086041', 'info@grenvilleschool.com', 'Grenville', 'Schools', 'https://lh3.googleusercontent.com/a/AGNmyxZabb4CGvve2ja7vb_m-Fj2tmB4ckX7l7rfbHbs=s96-c', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(2, '101565183305580417013', 'iamrich0385@gmail.com', 'Damilola', 'Richard', 'https://lh3.googleusercontent.com/a/AGNmyxabFzn6uRsCm6MQuHshLk1qNU7unA9mdn6zqKjU=s96-c', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(3, '100050661333068686568', 'mikipary@gmail.com', 'Mickypary', 'Codz', 'https://lh3.googleusercontent.com/a/AGNmyxYiWCydDEozOWLUd_fXnARoZzn-ZMAORb52x-U3=s96-c', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 

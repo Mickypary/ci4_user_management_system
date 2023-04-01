@@ -2,7 +2,13 @@
 
 
 <?= $this->section('page_title'); ?>
-	<span>Welcome: <?= ucfirst($userdata->username); ?></span>
+	<?php if(session()->has('google_user')): 
+		$uinfo = session()->get('google_user');
+	?>
+		<span>Welcome to <?= ucfirst($uinfo['first_name']); ?> <?= ucfirst($uinfo['last_name']); ?></span>
+	<?php else: ?>
+		<span>Welcome to <?= ucfirst($userdata->username); ?></span>
+	<?php endif; ?>
 <?= $this->endSection(); ?>
 
 
@@ -11,6 +17,15 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
+			<?php if(session()->has('google_user')): 
+				$uinfo = session()->get('google_user');
+			?>
+				<div class="jumbotron">
+					<img src="<?= $uinfo['profile_pic']; ?>" height="100" width="100">
+					<p>Name: <?= $uinfo['first_name']; ?> <?= $uinfo['last_name']; ?></p>
+					<p>Email: <?= $uinfo['email']; ?></p>
+				</div>
+			<?php else: ?>
 			<div class="jumbotron">
 				<?php if($userdata->profile_pic != ''): ?>
 				<img class="rounded-circle" src="" height="60" width="60">
@@ -24,6 +39,7 @@
 				<h4>Email: <?= $userdata->email; ?></h4>
 				<h4>Gender: <?= ucfirst($userdata->gender); ?></h4>
 			</div>
+			<?php endif; ?>
 		</div>
 		
 	</div>

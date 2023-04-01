@@ -32,6 +32,7 @@ class Login extends Controller
 		$data = [];
 		$data['errors'] = null;
 
+		// site login code
 		if ($this->request->getMethod() == 'post') {
 			
 			$rules = [
@@ -94,6 +95,69 @@ class Login extends Controller
 				$data['errors'] = $this->validator;
 			}
 		}
+
+
+		// google login code
+		require_once APPPATH . "libraries/vendor/autoload.php";
+
+		$google_client = new \Google_Client();
+		$google_client->setClientId('36228445799-5j6vn0687emn01g8sg2o39v9e9td1i43.apps.googleusercontent.com');
+		$google_client->setClientSecret('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');
+		$google_client->setRedirectUri(base_url() . 'login');
+		$google_client->addScope('email');
+		$google_client->addScope('profile');
+
+		// the 'code' request name is predefined by google
+		if ($this->request->getVar('code')) {
+			
+			$token = $google_client->fetchAccessTokenWithAuthCode($this->request->getVar('code'));
+			if (!isset($token['error'])) {
+				
+				$google_client->setAccessToken($token['access_token']);
+				session()->set('access_token', $token['access_token']);
+
+				// to get the profile data
+				$google_service = new \Google_Service_Oauth2($google_client);
+
+				$googledata = $google_service->userinfo->get();
+								
+				if ($this->loginModel->google_user_exists($googledata['id'])) {
+					// update
+					$userdata = [
+						'first_name' => $googledata['given_name'],
+						'last_name' => $googledata['family_name'],
+						'email' => $googledata['email'],
+						'profile_pic' => $googledata['picture'],
+					];
+
+					$this->loginModel->updateGoogleUser($googledata['id'], $userdata);
+					session()->set('google_user', $userdata);
+					return redirect()->to(base_url() . 'dashboard');
+
+
+				}else {
+					// insert
+					$userdata = [
+						'oauth_id' => $googledata['id'],
+						'first_name' => $googledata['given_name'],
+						'last_name' => $googledata['family_name'],
+						'email' => $googledata['email'],
+						'profile_pic' => $googledata['picture'],
+					];
+
+					$this->loginModel->createGoogleUser($userdata);
+					// session()->set($userdata);
+					session()->set('google_user', $userdata);
+					return redirect()->to(base_url() . 'dashboard');
+				}
+			}
+		}
+
+		if (!session()->get('access_token')) {
+			
+			$data['loginButton'] = $google_client->createAuthUrl();
+		}
+		
 		
 		return view("login_view", $data);
 	}

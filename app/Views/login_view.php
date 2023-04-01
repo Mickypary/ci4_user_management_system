@@ -29,15 +29,22 @@
 				<span class="text-danger"><?= display_error($errors, "pass"); ?></span>
 			</div>
 
-
 			<div class="form-group">
 				<input class="btn btn-primary" type="submit" name="login" value="Login">
+				<a href="">Forgot Password ?</a>
 			</div>
 
+			<?php if(isset($loginButton)): ?>
+				<div class="form-group">
+					<a href="<?= $loginButton; ?>"><img height="60" src="<?= base_url() ?>public/assets/images/goog.png"></a>
+				</div>
+			<?php endif; ?>
+
 			<div class="form-group">
-				<a href=""><img height="60" src="<?= base_url() ?>public/assets/images/goog.png"></a>
-				<a class="float-right" href=""><img height="40" src="<?= base_url() ?>public/assets/images/fb.png"></a>
+				<a class="" href=""><img height="40" src="<?= base_url() ?>public/assets/images/fb.png"></a>
 			</div>
+
+			
 
 
 

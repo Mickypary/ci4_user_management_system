@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="<?= base_url(); ?>public/assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="<?= base_url(); ?>public/assets/css/styles.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <title>GoPHP Training and Development</title>
+        <title>MrichTech Training and Development</title>
     </head>
     <body>
 
