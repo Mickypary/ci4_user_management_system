@@ -30,8 +30,6 @@ class FileUpload extends Controller
 						'ext_in' => 'Invalid file extension',
 					],
 				],
-
-
 			];
 
 			if ($this->validate($rules)) {			
