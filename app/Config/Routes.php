@@ -31,6 +31,15 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
+/*
+ * --------------------------------------------------------------------
+ * Route Definitions
+ * --------------------------------------------------------------------
+*/
+
+// $routes->get('/', 'StudentController::index');
+$routes->match(['get', 'post'], 'StudentController/importCsvToDb', 'StudentController::importCsvToDb');
+
 // $routes->get('codeigniter-4-training', 'Home::training');
 // $routes->get('online-training', 'Home::online');
 // $routes->get('about', 'Home::about');

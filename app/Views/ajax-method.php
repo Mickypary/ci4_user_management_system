@@ -12,7 +12,7 @@
 				url: "<?= site_url('sitecontroller/handleAjaxRequest') ?>",
 				type: "POST",
 				data: {
-					name: "Sanjay Kumar",
+					'name': "Sanjay Kumar",
 					email: "sanjay@gmail.com"
 				},
 				dataType: "JSON",

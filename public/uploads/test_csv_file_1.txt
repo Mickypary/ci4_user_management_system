@@ -1,0 +1,3 @@
+Name,Email,Phone,Status
+"John Doe","john.doe@gmail.com","123-456-7890","Active"
+"Gary Riley","gary@hotmail.com","434-506-7890","Inactive"

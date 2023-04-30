@@ -1,0 +1,12 @@
+1. To install the project, go to phpmyadmin and click on the import tab to install the sql file i included in the project directory called ci4_database.sql
+
+2. Copy the project folder into your xampp/htdocs
+
+3. Open the project in any of your preferred code editor e.g Sublime Text or Notepad++
+
+4. In the project dir, navigate to app/Config/Database to edit the $default database connection array. You may not need to edit this file if your connection to database is not having a password and your database username is root and your database name is ci4
+
+5. Now you are ready to launch the project in your browser
+
+Email: admin@gmail.com
+Password: password
